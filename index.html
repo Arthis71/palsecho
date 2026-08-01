@@ -1,194 +1,496 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politique de confidentialité — Pulsecho</title>
-    <style>
-        body {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 32px 20px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #202124;
-            background: #ffffff;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité — Pulsecho</title>
+<meta name="description" content="Politique de confidentialité de Pulsecho, lecteur de musique local. Aucune donnée personnelle collectée, aucun serveur distant.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #131016;
+    --surface: #1C1821;
+    --accent: #E9A13B;
+    --text: #F2EFEA;
+    --text-muted: rgba(242, 239, 234, 0.55);
+    --text-faint: rgba(242, 239, 234, 0.35);
+    --outline: rgba(242, 239, 234, 0.08);
+    --radius-card: 16px;
+    --radius-pill: 22px;
+  }
 
-        h1,
-        h2 {
-            color: #4f3b8f;
-        }
+  * { box-sizing: border-box; }
 
-        hr {
-            margin: 48px 0;
-            border: 0;
-            border-top: 1px solid #dddddd;
-        }
+  html { -webkit-text-size-adjust: 100%; }
 
-        a {
-            color: #4f3b8f;
-        }
-    </style>
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 72px;
+  }
+
+  /* ---------- Header ---------- */
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .brand .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  .lang {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .lang button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .lang button:hover { color: var(--text); }
+
+  .lang button[aria-pressed="true"] {
+    background: var(--accent);
+    color: #1B1206;
+  }
+
+  .lang button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Title block ---------- */
+
+  h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(26px, 6vw, 34px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+  }
+
+  .updated {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin: 0 0 20px;
+  }
+
+  .intro {
+    color: var(--text-muted);
+    margin: 0 0 8px;
+  }
+
+  /* ---------- Sections ---------- */
+
+  section { margin-top: 34px; }
+
+  h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    display: flex;
+    gap: 10px;
+  }
+
+  h2 .num {
+    color: var(--accent);
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    padding-top: 3px;
+    flex: none;
+  }
+
+  p {
+    color: var(--text-muted);
+    margin: 0 0 10px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  li {
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-card);
+    padding: 10px 16px;
+    margin-top: 4px;
+    color: var(--accent);
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .contact:hover { border-color: var(--accent); }
+
+  .contact svg { flex: none; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--outline);
+    color: var(--text-faint);
+    font-size: 12px;
+  }
+
+  [hidden] { display: none !important; }
+</style>
 </head>
 <body>
-    <main>
-        <section lang="fr">
-            <h1>Politique de confidentialité de Pulsecho</h1>
+<div class="page">
 
-            <p><strong>Dernière mise à jour : 1er août 2026</strong></p>
+  <div class="top">
+    <div class="brand"><span class="dot"></span>Pulsecho</div>
+    <div class="lang" role="group" aria-label="Language / Langue">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
 
-            <p>
-                Pulsecho est un lecteur de musique local développé et publié
-                par Arthis Chaboud.
-            </p>
+  <!-- ============================ FRANÇAIS ============================ -->
+  <main lang="fr" data-content="fr">
+    <h1>Politique de confidentialité de Pulsecho</h1>
+    <p class="updated">Dernière mise à jour : 30 juillet 2026</p>
+    <p class="intro">La présente politique de confidentialité décrit la manière dont l’application mobile Pulsecho accède aux informations présentes sur l’appareil de l’utilisateur et les utilise.</p>
 
-            <h2>Fonctionnement de l'application</h2>
+    <section>
+      <h2><span class="num">1</span>Éditeur de l’application</h2>
+      <p>Pulsecho est une application développée et publiée par Arthis Chaboud, sous le nom de développeur Pulsecho.</p>
+      <p>Pour toute question concernant cette politique de confidentialité :</p>
+      <a class="contact" href="mailto:pulsechoapp@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        pulsechoapp@gmail.com
+      </a>
+    </section>
 
-            <p>
-                Pulsecho permet d'afficher, d'organiser et de lire les fichiers
-                audio présents sur l'appareil de l'utilisateur.
-            </p>
+    <section>
+      <h2><span class="num">2</span>Fonctionnement de l’application</h2>
+      <p>Pulsecho est un lecteur de musique local permettant d’afficher, d’organiser et de lire les fichiers audio présents sur l’appareil de l’utilisateur.</p>
+      <p>L’application ne nécessite pas la création d’un compte utilisateur.</p>
+    </section>
 
-            <p>
-                L'application ne nécessite pas la création d'un compte utilisateur.
-            </p>
+    <section>
+      <h2><span class="num">3</span>Accès aux fichiers audio</h2>
+      <p>Pulsecho peut demander l’autorisation d’accéder aux fichiers audio présents sur l’appareil.</p>
+      <p>Cet accès est exclusivement utilisé pour :</p>
+      <ul>
+        <li>rechercher les fichiers audio présents sur l’appareil ;</li>
+        <li>afficher la bibliothèque musicale ;</li>
+        <li>lire les morceaux sélectionnés ;</li>
+        <li>afficher les informations intégrées aux fichiers audio, telles que le titre, l’artiste, l’album, la durée et la pochette ;</li>
+        <li>gérer localement les playlists et les favoris.</li>
+      </ul>
+      <p>Les fichiers audio ne sont ni copiés ni envoyés vers un serveur externe.</p>
+    </section>
 
-            <h2>Accès aux fichiers audio</h2>
+    <section>
+      <h2><span class="num">4</span>Collecte des données</h2>
+      <p>Pulsecho ne collecte aucune donnée personnelle.</p>
+      <p>L’application n’utilise aucun service d’analyse, de suivi, de publicité ou de rapport de plantage distant.</p>
+      <p>Pulsecho n’utilise notamment pas :</p>
+      <ul>
+        <li>Firebase ;</li>
+        <li>Google Analytics ;</li>
+        <li>Crashlytics ;</li>
+        <li>Sentry ;</li>
+        <li>de régie publicitaire ;</li>
+        <li>de service de suivi des utilisateurs.</li>
+      </ul>
+    </section>
 
-            <p>
-                Pulsecho peut demander l'autorisation d'accéder aux fichiers
-                audio présents sur l'appareil.
-            </p>
+    <section>
+      <h2><span class="num">5</span>Transmission et partage des données</h2>
+      <p>Pulsecho ne transmet et ne partage aucune donnée avec des tiers.</p>
+      <p>L’application ne communique avec aucune API ni aucun serveur distant.</p>
+      <p>Les fichiers audio, métadonnées, pochettes, playlists, favoris et préférences restent uniquement stockés et traités sur l’appareil de l’utilisateur.</p>
+    </section>
 
-            <p>Cet accès est uniquement utilisé pour :</p>
+    <section>
+      <h2><span class="num">6</span>Stockage local</h2>
+      <p>Pulsecho peut enregistrer localement certaines informations nécessaires à son fonctionnement, notamment :</p>
+      <ul>
+        <li>les playlists ;</li>
+        <li>les morceaux favoris ;</li>
+        <li>les préférences de l’application ;</li>
+        <li>les paramètres de lecture ;</li>
+        <li>les informations permettant d’organiser la bibliothèque musicale.</li>
+      </ul>
+      <p>Ces données ne quittent pas l’appareil.</p>
+      <p>L’utilisateur peut supprimer les données propres à Pulsecho depuis les paramètres Android ou en désinstallant l’application. La désinstallation de Pulsecho ne supprime pas les fichiers audio personnels présents sur l’appareil.</p>
+    </section>
 
-            <ul>
-                <li>rechercher et afficher les fichiers audio locaux ;</li>
-                <li>lire les morceaux sélectionnés ;</li>
-                <li>afficher les titres, artistes, albums, durées et pochettes disponibles ;</li>
-                <li>gérer localement les playlists, favoris et préférences.</li>
-            </ul>
+    <section>
+      <h2><span class="num">7</span>Permissions Android</h2>
+      <p>Pulsecho peut demander une permission Android permettant d’accéder aux fichiers audio.</p>
+      <p>Cette permission est uniquement utilisée pour fournir les fonctionnalités principales du lecteur musical.</p>
+      <p>L’utilisateur peut retirer cette permission à tout moment depuis les paramètres Android. Certaines fonctionnalités de Pulsecho, notamment l’affichage et la lecture de la bibliothèque musicale, ne seront alors plus disponibles.</p>
+    </section>
 
-            <h2>Collecte et partage des données</h2>
+    <section>
+      <h2><span class="num">8</span>Publicités</h2>
+      <p>Pulsecho ne contient aucune publicité et n’utilise aucun identifiant publicitaire.</p>
+    </section>
 
-            <p>
-                Pulsecho ne collecte, ne transmet, ne vend et ne partage aucune
-                donnée personnelle.
-            </p>
+    <section>
+      <h2><span class="num">9</span>Enfants</h2>
+      <p>Pulsecho n’est pas spécifiquement conçue ni destinée aux enfants.</p>
+      <p>L’application ne collecte volontairement aucune information personnelle concernant ses utilisateurs.</p>
+    </section>
 
-            <p>
-                L'application n'utilise aucun service d'analyse, de suivi,
-                de publicité ou de rapport de plantage distant.
-            </p>
+    <section>
+      <h2><span class="num">10</span>Sécurité</h2>
+      <p>Pulsecho limite son accès aux informations strictement nécessaires au fonctionnement du lecteur musical.</p>
+      <p>Comme aucune donnée n’est envoyée vers un serveur, les informations traitées par l’application restent sous le contrôle de l’utilisateur sur son appareil.</p>
+    </section>
 
-            <p>
-                Pulsecho ne communique avec aucune API ni aucun serveur distant.
-                Les fichiers audio, métadonnées, pochettes, playlists, favoris
-                et préférences restent stockés et traités localement sur l'appareil.
-            </p>
+    <section>
+      <h2><span class="num">11</span>Modification de cette politique</h2>
+      <p>Cette politique pourra être modifiée afin de refléter les évolutions de Pulsecho ou de nouvelles obligations réglementaires.</p>
+      <p>La date de dernière mise à jour sera indiquée en haut de cette page.</p>
+    </section>
 
-            <h2>Publicités</h2>
+    <section>
+      <h2><span class="num">12</span>Contact</h2>
+      <p>Pour toute question concernant Pulsecho ou cette politique de confidentialité :</p>
+      <a class="contact" href="mailto:pulsechoapp@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        pulsechoapp@gmail.com
+      </a>
+    </section>
 
-            <p>
-                Pulsecho ne contient aucune publicité et n'utilise aucun
-                identifiant publicitaire.
-            </p>
+    <footer>Pulsecho — lecteur de musique local. Aucune donnée ne quitte votre appareil.</footer>
+  </main>
 
-            <h2>Suppression des données locales</h2>
+  <!-- ============================ ENGLISH ============================ -->
+  <main lang="en" data-content="en" hidden>
+    <h1>Pulsecho privacy policy</h1>
+    <p class="updated">Last updated: 30 July 2026</p>
+    <p class="intro">This privacy policy describes how the Pulsecho mobile application accesses and uses the information present on the user's device.</p>
 
-            <p>
-                Les données propres à Pulsecho peuvent être supprimées depuis
-                les paramètres Android ou en désinstallant l'application.
-                La désinstallation de Pulsecho ne supprime pas les fichiers
-                audio personnels présents sur l'appareil.
-            </p>
+    <section>
+      <h2><span class="num">1</span>Publisher</h2>
+      <p>Pulsecho is an application developed and published by Arthis Chaboud, under the developer name Pulsecho.</p>
+      <p>For any question regarding this privacy policy:</p>
+      <a class="contact" href="mailto:pulsechoapp@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        pulsechoapp@gmail.com
+      </a>
+    </section>
 
-            <h2>Contact</h2>
+    <section>
+      <h2><span class="num">2</span>How the application works</h2>
+      <p>Pulsecho is a local music player that lets you browse, organize and play the audio files stored on your device.</p>
+      <p>The application does not require creating a user account.</p>
+    </section>
 
-            <p>
-                Pour toute question concernant cette politique :
-                <a href="mailto:pulsechoapp@gmail.com">pulsechoapp@gmail.com</a>
-            </p>
-        </section>
+    <section>
+      <h2><span class="num">3</span>Access to audio files</h2>
+      <p>Pulsecho may ask for permission to access the audio files on your device.</p>
+      <p>This access is used exclusively to:</p>
+      <ul>
+        <li>find the audio files present on the device;</li>
+        <li>display the music library;</li>
+        <li>play the selected tracks;</li>
+        <li>show the information embedded in the audio files, such as title, artist, album, duration and cover art;</li>
+        <li>manage playlists and favourites locally.</li>
+      </ul>
+      <p>Audio files are never copied nor sent to an external server.</p>
+    </section>
 
-        <hr>
+    <section>
+      <h2><span class="num">4</span>Data collection</h2>
+      <p>Pulsecho does not collect any personal data.</p>
+      <p>The application uses no analytics, tracking, advertising or remote crash-reporting service.</p>
+      <p>In particular, Pulsecho does not use:</p>
+      <ul>
+        <li>Firebase;</li>
+        <li>Google Analytics;</li>
+        <li>Crashlytics;</li>
+        <li>Sentry;</li>
+        <li>any advertising network;</li>
+        <li>any user-tracking service.</li>
+      </ul>
+    </section>
 
-        <section lang="en">
-            <h1>Pulsecho Privacy Policy</h1>
+    <section>
+      <h2><span class="num">5</span>Transmission and sharing of data</h2>
+      <p>Pulsecho does not transmit or share any data with third parties.</p>
+      <p>The application does not communicate with any API or remote server.</p>
+      <p>Audio files, metadata, cover art, playlists, favourites and preferences remain stored and processed solely on the device.</p>
+    </section>
 
-            <p><strong>Last updated: August 1, 2026</strong></p>
+    <section>
+      <h2><span class="num">6</span>Local storage</h2>
+      <p>Pulsecho may store locally some information required for it to work, in particular:</p>
+      <ul>
+        <li>playlists;</li>
+        <li>favourite tracks;</li>
+        <li>application preferences;</li>
+        <li>playback settings;</li>
+        <li>the information used to organize the music library.</li>
+      </ul>
+      <p>This data never leaves the device.</p>
+      <p>You can delete Pulsecho's own data from the Android settings, or by uninstalling the application. Uninstalling Pulsecho does not delete the personal audio files stored on the device.</p>
+    </section>
 
-            <p>
-                Pulsecho is a local music player developed and published
-                by Arthis Chaboud.
-            </p>
+    <section>
+      <h2><span class="num">7</span>Android permissions</h2>
+      <p>Pulsecho may request an Android permission granting access to audio files.</p>
+      <p>This permission is used solely to provide the core features of the music player.</p>
+      <p>You can revoke this permission at any time from the Android settings. Some Pulsecho features, in particular displaying and playing the music library, will then no longer be available.</p>
+    </section>
 
-            <h2>Application functionality</h2>
+    <section>
+      <h2><span class="num">8</span>Advertising</h2>
+      <p>Pulsecho contains no advertising and uses no advertising identifier.</p>
+    </section>
 
-            <p>
-                Pulsecho allows users to browse, organize, and play audio files
-                stored on their device.
-            </p>
+    <section>
+      <h2><span class="num">9</span>Children</h2>
+      <p>Pulsecho is not specifically designed for, nor aimed at, children.</p>
+      <p>The application does not knowingly collect any personal information about its users.</p>
+    </section>
 
-            <p>The application does not require a user account.</p>
+    <section>
+      <h2><span class="num">10</span>Security</h2>
+      <p>Pulsecho limits its access to the information strictly necessary for the music player to work.</p>
+      <p>Because no data is sent to a server, the information processed by the application stays under your control, on your device.</p>
+    </section>
 
-            <h2>Access to audio files</h2>
+    <section>
+      <h2><span class="num">11</span>Changes to this policy</h2>
+      <p>This policy may be amended to reflect changes to Pulsecho or new regulatory obligations.</p>
+      <p>The date of the last update is shown at the top of this page.</p>
+    </section>
 
-            <p>
-                Pulsecho may request permission to access audio files stored
-                on the user's device.
-            </p>
+    <section>
+      <h2><span class="num">12</span>Contact</h2>
+      <p>For any question about Pulsecho or this privacy policy:</p>
+      <a class="contact" href="mailto:pulsechoapp@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        pulsechoapp@gmail.com
+      </a>
+    </section>
 
-            <p>This access is used only to:</p>
+    <footer>Pulsecho — local music player. No data ever leaves your device.</footer>
+  </main>
 
-            <ul>
-                <li>find and display locally stored audio files;</li>
-                <li>play selected tracks;</li>
-                <li>display available titles, artists, albums, durations, and artwork;</li>
-                <li>manage playlists, favorites, and preferences locally.</li>
-            </ul>
+</div>
 
-            <h2>Data collection and sharing</h2>
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang button');
+    var panels = document.querySelectorAll('[data-content]');
 
-            <p>
-                Pulsecho does not collect, transmit, sell, or share any
-                personal data.
-            </p>
+    function setLang(lang) {
+      panels.forEach(function (panel) {
+        panel.hidden = panel.dataset.content !== lang;
+      });
+      buttons.forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+      });
+      document.documentElement.lang = lang;
+      document.title = lang === 'en'
+        ? 'Privacy policy — Pulsecho'
+        : 'Politique de confidentialité — Pulsecho';
+    }
 
-            <p>
-                The application does not use analytics, tracking, advertising,
-                or remote crash-reporting services.
-            </p>
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        setLang(button.dataset.lang);
+        location.hash = button.dataset.lang;
+      });
+    });
 
-            <p>
-                Pulsecho does not communicate with any API or remote server.
-                Audio files, metadata, artwork, playlists, favorites, and
-                preferences remain stored and processed locally on the device.
-            </p>
-
-            <h2>Advertising</h2>
-
-            <p>
-                Pulsecho does not contain advertising and does not use
-                advertising identifiers.
-            </p>
-
-            <h2>Deleting local data</h2>
-
-            <p>
-                Data created by Pulsecho can be deleted from the Android settings
-                or by uninstalling the application. Uninstalling Pulsecho does
-                not delete the user's personal audio files.
-            </p>
-
-            <h2>Contact</h2>
-
-            <p>
-                For questions about this privacy policy:
-                <a href="mailto:pulsechoapp@gmail.com">pulsechoapp@gmail.com</a>
-            </p>
-        </section>
-    </main>
+    // #en / #fr wins, otherwise fall back to the browser language
+    var requested = location.hash.replace('#', '').toLowerCase();
+    if (requested !== 'fr' && requested !== 'en') {
+      requested = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
+    }
+    setLang(requested);
+  })();
+</script>
 </body>
 </html>
