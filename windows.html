@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palsecho pour Windows</title>
+<meta name="description" content="Télécharger Palsecho pour Windows 10 et 11 (64 bits) : installateur ou version portable. Lecteur de musique local, sans compte ni serveur.">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #131016;
+    --surface: #1C1821;
+    --accent: #E9A13B;
+    --on-accent: #1B1206;
+    --text: #F2EFEA;
+    --text-muted: rgba(242, 239, 234, 0.55);
+    --text-faint: rgba(242, 239, 234, 0.35);
+    --outline: rgba(242, 239, 234, 0.08);
+    --radius-card: 16px;
+    --radius-pill: 22px;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 72px;
+  }
+
+  /* ---------- Header ---------- */
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+
+  .lang {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .lang button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .lang button:hover { color: var(--text); }
+
+  .lang button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .lang button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Title block ---------- */
+
+  h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(26px, 6vw, 34px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin: 0 0 20px;
+  }
+
+  .intro {
+    color: var(--text-muted);
+    margin: 0 0 8px;
+  }
+
+  /* ---------- Download cards ---------- */
+
+  .downloads {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-card);
+    padding: 20px;
+  }
+
+  .card.primary { border-color: rgba(233, 161, 59, 0.45); }
+
+  .card-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+
+  .card h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 8px;
+  }
+
+  .card p { margin: 0 0 14px; }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    border-radius: var(--radius-pill);
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 13px;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .button svg { flex: none; }
+
+  .button.filled {
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 500;
+  }
+
+  .button.filled:hover { background: #F0B25A; }
+
+  .button.outlined {
+    border: 1px solid var(--outline);
+    color: var(--accent);
+  }
+
+  .button.outlined:hover { border-color: var(--accent); }
+
+  .size {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Sections ---------- */
+
+  section { margin-top: 34px; }
+
+  section h2 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 10px;
+  }
+
+  p {
+    color: var(--text-muted);
+    margin: 0 0 10px;
+  }
+
+  p strong { color: var(--text); font-weight: 500; }
+
+  ul {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  li {
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  a { color: var(--accent); }
+
+  code, .hash {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text);
+  }
+
+  .hashes {
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-card);
+    padding: 14px 16px;
+    margin: 0 0 12px;
+  }
+
+  .hashes dt {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .hashes dd {
+    margin: 2px 0 10px;
+    overflow-wrap: anywhere;
+  }
+
+  .hashes dd:last-child { margin-bottom: 0; }
+
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: var(--radius-card);
+    padding: 12px 16px;
+    margin: 0 0 12px;
+    overflow-x: auto;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--outline);
+    color: var(--text-faint);
+    font-size: 12px;
+  }
+
+  footer a { text-decoration: none; }
+
+  footer a:hover { text-decoration: underline; }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <a class="brand" href="./"><span class="dot"></span>Palsecho</a>
+    <div class="lang" role="group" aria-label="Language / Langue">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <!-- ============================ FRANÇAIS ============================ -->
+  <main lang="fr" data-content="fr">
+    <h1>Palsecho pour Windows</h1>
+    <p class="meta">Version 0.17.0 · Windows 10 et 11 · 64 bits (x64)</p>
+    <p class="intro">Palsecho est un lecteur de musique local : il lit les fichiers audio de votre ordinateur, sans compte, sans publicité et sans envoyer aucune donnée.</p>
+
+    <div class="downloads">
+      <div class="card primary">
+        <p class="card-label">Recommandé</p>
+        <h2>Installateur</h2>
+        <p>S’installe pour votre compte Windows uniquement, sans droits administrateur. Ajoute Palsecho au menu Démarrer et à Paramètres › Applications. Une nouvelle version s’installe par-dessus la précédente en conservant vos données.</p>
+        <a class="button filled" href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/PalsechoSetup-0.17.0.exe">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          PalsechoSetup-0.17.0.exe
+        </a><span class="size">12,8 Mo</span>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Version portable</p>
+        <h2>Archive ZIP</h2>
+        <p>Sans installation : extrayez l’archive, puis lancez <code>palsecho.exe</code> dans le dossier <code>Palsecho</code>. Elle utilise les mêmes données que la version installée ; les deux ne peuvent pas être ouvertes en même temps.</p>
+        <a class="button outlined" href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/Palsecho-0.17.0-windows-x64.zip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Palsecho-0.17.0-windows-x64.zip
+        </a><span class="size">15,2 Mo</span>
+      </div>
+    </div>
+
+    <section>
+      <h2>Avertissement « Windows a protégé votre ordinateur »</h2>
+      <p>Palsecho n’est pas encore signé numériquement. Au premier lancement d’un fichier téléchargé, Windows SmartScreen peut donc afficher cet avertissement. Pour continuer, cliquez sur <strong>Informations complémentaires</strong>, puis sur <strong>Exécuter quand même</strong>.</p>
+      <p>Pour vous assurer que le fichier est bien celui publié ici, comparez son empreinte SHA-256 ci-dessous.</p>
+    </section>
+
+    <section>
+      <h2>Vérifier le téléchargement</h2>
+      <dl class="hashes">
+        <dt>PalsechoSetup-0.17.0.exe</dt>
+        <dd class="hash">7a84740557e08a38c822a1511493f7665da3fdc7e5d061a3554c2a51a2659ea5</dd>
+        <dt>Palsecho-0.17.0-windows-x64.zip</dt>
+        <dd class="hash">8fdc01398cccdb623c17d1f3386c1ec76c43e69fe080516ac4ec85a0899cc070</dd>
+      </dl>
+      <p>Dans PowerShell, depuis le dossier du téléchargement :</p>
+      <pre><code>Get-FileHash .\PalsechoSetup-0.17.0.exe</code></pre>
+      <p>Les mêmes empreintes sont publiées dans <a href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/SHA256SUMS.txt">SHA256SUMS.txt</a>.</p>
+    </section>
+
+    <section>
+      <h2>Configuration requise</h2>
+      <ul>
+        <li>Windows 10 ou Windows 11, 64 bits (x64) ;</li>
+        <li>aucun autre logiciel à installer : tout ce dont Palsecho a besoin est inclus ;</li>
+        <li>éditions Windows « N » (sans lecteur multimédia intégré) : installez le <strong>Media Feature Pack</strong>, disponible dans Paramètres › Applications › Fonctionnalités facultatives. Sans lui, la lecture audio ne fonctionne pas.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Vos données</h2>
+      <p>Playlists, favoris, statistiques et préférences restent sur votre ordinateur, dans <code>%APPDATA%\Palsecho</code>. Une mise à jour ou une désinstallation ne les supprime pas. Pour en savoir plus, consultez la <a href="./#fr">politique de confidentialité</a>.</p>
+    </section>
+
+    <footer>Palsecho — lecteur de musique local. · <a href="https://github.com/Arthis71/palsecho/releases">Toutes les versions</a> · <a href="./#fr">Politique de confidentialité</a></footer>
+  </main>
+
+  <!-- ============================ ENGLISH ============================ -->
+  <main lang="en" data-content="en" hidden>
+    <h1>Palsecho for Windows</h1>
+    <p class="meta">Version 0.17.0 · Windows 10 and 11 · 64-bit (x64)</p>
+    <p class="intro">Palsecho is a local music player: it plays the audio files on your computer, with no account, no ads, and no data sent anywhere.</p>
+
+    <div class="downloads">
+      <div class="card primary">
+        <p class="card-label">Recommended</p>
+        <h2>Installer</h2>
+        <p>Installs for your Windows account only, without administrator rights. Adds Palsecho to the Start menu and to Settings › Apps. A new version installs over the previous one and keeps your data.</p>
+        <a class="button filled" href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/PalsechoSetup-0.17.0.exe">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          PalsechoSetup-0.17.0.exe
+        </a><span class="size">12.8 MB</span>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Portable version</p>
+        <h2>ZIP archive</h2>
+        <p>No installation: extract the archive, then run <code>palsecho.exe</code> in the <code>Palsecho</code> folder. It uses the same data as the installed version; the two cannot be open at the same time.</p>
+        <a class="button outlined" href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/Palsecho-0.17.0-windows-x64.zip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Palsecho-0.17.0-windows-x64.zip
+        </a><span class="size">15.2 MB</span>
+      </div>
+    </div>
+
+    <section>
+      <h2>"Windows protected your PC" warning</h2>
+      <p>Palsecho is not digitally signed yet, so Windows SmartScreen may show this warning the first time you open a downloaded file. To continue, click <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+      <p>To make sure the file is the one published here, compare its SHA-256 checksum below.</p>
+    </section>
+
+    <section>
+      <h2>Verify the download</h2>
+      <dl class="hashes">
+        <dt>PalsechoSetup-0.17.0.exe</dt>
+        <dd class="hash">7a84740557e08a38c822a1511493f7665da3fdc7e5d061a3554c2a51a2659ea5</dd>
+        <dt>Palsecho-0.17.0-windows-x64.zip</dt>
+        <dd class="hash">8fdc01398cccdb623c17d1f3386c1ec76c43e69fe080516ac4ec85a0899cc070</dd>
+      </dl>
+      <p>In PowerShell, from the download folder:</p>
+      <pre><code>Get-FileHash .\PalsechoSetup-0.17.0.exe</code></pre>
+      <p>The same checksums are published in <a href="https://github.com/Arthis71/palsecho/releases/download/v0.17.0/SHA256SUMS.txt">SHA256SUMS.txt</a>.</p>
+    </section>
+
+    <section>
+      <h2>Requirements</h2>
+      <ul>
+        <li>Windows 10 or Windows 11, 64-bit (x64);</li>
+        <li>nothing else to install: everything Palsecho needs is included;</li>
+        <li>Windows "N" editions (without the built-in media player): install the <strong>Media Feature Pack</strong>, available in Settings › Apps › Optional features. Without it, audio playback does not work.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Your data</h2>
+      <p>Playlists, favourites, statistics and preferences stay on your computer, in <code>%APPDATA%\Palsecho</code>. Updating or uninstalling does not delete them. To learn more, read the <a href="./#en">privacy policy</a>.</p>
+    </section>
+
+    <footer>Palsecho — local music player. · <a href="https://github.com/Arthis71/palsecho/releases">All versions</a> · <a href="./#en">Privacy policy</a></footer>
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang button');
+    var panels = document.querySelectorAll('[data-content]');
+
+    function setLang(lang) {
+      panels.forEach(function (panel) {
+        panel.hidden = panel.dataset.content !== lang;
+      });
+      buttons.forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+      });
+      document.documentElement.lang = lang;
+      document.title = lang === 'en'
+        ? 'Palsecho for Windows'
+        : 'Palsecho pour Windows';
+    }
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        setLang(button.dataset.lang);
+        location.hash = button.dataset.lang;
+      });
+    });
+
+    // #en / #fr wins, otherwise fall back to the browser language
+    var requested = location.hash.replace('#', '').toLowerCase();
+    if (requested !== 'fr' && requested !== 'en') {
+      requested = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
+    }
+    setLang(requested);
+  })();
+</script>
+</body>
+</html>
